@@ -2,23 +2,30 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [data,setData]=useState([]) 
+  
+  const url="https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=1d8f871544f94cf9bc6b9eff355319b8"
+  useEffect(()=>{
+    fetch(url)
+    .then(response =>response.json())
+    .then(json=>{
+      console.log("news",json)
+      setData(json)
+    }).catch(e=>{
+      console.log("e",e)
+    })
+  },[])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <h2>Welcome</h2>
+      {
+        data.map(item=>{
+          return (
+            <div>{item.url}</div>
+          )
+        })
+      }
+      </div>
   );
 }
 
