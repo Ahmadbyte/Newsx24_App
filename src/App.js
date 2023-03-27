@@ -20,7 +20,7 @@ function App() {
       {
         data.map(item=>{
           return (
-            <div>{item.url}</div>
+            <div>{item.articles}</div>
           )
         })
       }
